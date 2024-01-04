@@ -218,13 +218,7 @@ export default function OrderScreen() {
                     </a>
                   )}
               </Card.Text>
-              {/* {order.isDelivered ? (
-                <MessageBox variant="success">
-                  Delivered at {order.deliveredAt}
-                </MessageBox>
-              ) : (
-                <MessageBox variant="danger">Not Delivered</MessageBox>
-              )} */}
+              {}
             </Card.Body>
           </Card>
           {/*  */}

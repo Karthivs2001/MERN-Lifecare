@@ -1,16 +1,16 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 import {  useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+
 import { getError } from "../utils";
 import { Helmet } from "react-helmet-async";
-import { Row, Col, Spinner } from 'react-bootstrap';
-//import Rating from "../components/Rating";
+import { Row, Col } from 'react-bootstrap';
+
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Button from "react-bootstrap/Button";
 import Product from "../components/Product";
-//import LinkContainer from "react-router-bootstrap/LinkContainer";
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,44 +30,12 @@ const reducer = (state, action) => {
   }
 };
 
-// const prices = [
-//   {
-//     name: "$1 to $50",
-//     value: "1-50",
-//   },
-//   {
-//     name: "$51 to $200",
-//     value: "51-200",
-//   },
-//   {
-//     name: "$201 to $1000",
-//     value: "201-1000",
-//   },
-// ];
 
-// export const ratings = [
-//   {
-//     name: "4stars & up",
-//     rating: 4,
-//   },
-//   {
-//     name: "3stars & up",
-//     rating: 3,
-//   },
-//   {
-//     name: "2stars & up",
-//     rating: 2,
-//   },
-//   {
-//     name: "1stars & up",
-//     rating: 1,
-//   },
-// ];
 
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const sp = new URLSearchParams(search); // /search?category=Shirts
+  const sp = new URLSearchParams(search); 
   const category = sp.get("category") || "all";
   const query = sp.get("query") || "all";
   const price = sp.get("price") || "all";
@@ -83,7 +51,6 @@ export default function SearchScreen() {
       try {
         let productData;
 
-        // Search by product name and category
         const productResponse = await axios.get(
           `/api/products/search?query=${query}`
         );
@@ -91,7 +58,7 @@ export default function SearchScreen() {
         if (productResponse.data.products.length > 0) {
           productData = productResponse.data;
         } else {
-          // If no results by product name and category, try searching only by category
+         
           const categoryResponse = await axios.get(
             `/api/products/search?category=${query}`
           );
@@ -112,28 +79,7 @@ export default function SearchScreen() {
 
   
   
-  
-  // const [categories, setCategories] = useState([]);
-  // useEffect(() => {
-  //   const fetchCategories = async () => {
-  //     try {
-  //       const { data } = await axios.get(`/api/products/categories`);
-  //       setCategories(data);
-  //     } catch (err) {
-  //       toast.error(getError(err));
-  //     }
-  //   };
-  //   fetchCategories();
-  // }, [dispatch]);
 
-  // const getFilterUrl = (filter) => {
-  //   const filterCategory = filter.category || category;
-  //   const filterQuery = filter.query || query;
-  //   const filterRating = filter.rating || rating;
-  //   const filterPrice = filter.price || price;
-  //   const sortOrder = filter.order || order;
-  //   return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}`;
-  // };
 
   return (
     <div>

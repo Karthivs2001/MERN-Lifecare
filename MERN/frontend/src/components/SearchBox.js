@@ -15,12 +15,12 @@ export default function SearchBox({ style }) {
   };
 
   const inputStyles = {
-    borderRadius: '48px', // Adjust border-radius as needed
+    borderRadius: '48px', 
   };
 
   const buttonStyles = {
-    borderRadius: '48px', // Adjust border-radius as needed
-    marginLeft: '-1px', // Adjust margin as needed to align with the input
+    borderRadius: '48px', 
+    marginLeft: '-1px', 
     color: '#000000',
   };
 

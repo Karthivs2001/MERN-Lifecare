@@ -8,7 +8,6 @@ import { Store } from '../Store';
 import { Link } from 'react-router-dom';
 import { getError } from '../utils';
 
-// Reducer function to manage state changes
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -22,32 +21,25 @@ const reducer = (state, action) => {
   }
 };
 
-// Functional component for the OrderHistoryScreen
 export default function OrderHistoryScreen() {
-  // Accessing global state from the context
   const { state } = useContext(Store);
   const { userInfo } = state;
 
-  // Use reducer hook to manage local state
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
   });
 
-  // Effect hook to fetch order history when component mounts
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        // Fetch order history data from the server
         const { data } = await axios.get(
           `/api/orders/mine`,
           { headers: { Authorization: `Bearer ${userInfo.token}` } }
         );
-        // Update state with fetched data on success
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (error) {
-        // Handle fetch error and update state accordingly
         dispatch({
           type: 'FETCH_FAIL',
           payload: getError(error),
@@ -80,7 +72,6 @@ export default function OrderHistoryScreen() {
         console.error('Cancellation Error:', error.response.data);
   
         if (error.response && error.response.status === 401) {
-          // Check if the error response indicates a role issue
           if (error.response.data.message === 'Invalid Admin Token') {
             console.error('User does not have admin permissions.');
           }
@@ -91,9 +82,6 @@ export default function OrderHistoryScreen() {
     }
   };
   
-  
-  
-
   const downloadReport = async (orderId) => {
     try {
       const response = await axios.get(`/api/orders/${orderId}/report`, {
@@ -114,7 +102,6 @@ export default function OrderHistoryScreen() {
     }
   };
 
-  // JSX rendering for the component
   return (
     <div style={{ margin: '20px', padding: '20px', maxWidth: '800px' }}>
       <Helmet>
@@ -123,13 +110,10 @@ export default function OrderHistoryScreen() {
 
       <h1 style={{ fontSize: '2em', marginBottom: '20px' }}>Order History</h1>
       {loading ? (
-        // Display a loading box while data is being fetched
         <LoadingBox />
       ) : error ? (
-        // Display an error message if there's an error in fetching data
         <MessageBox variant="danger" style={{ marginBottom: '20px' }}>{error}</MessageBox>
       ) : (
-        // Display the order history data in a table
         <table className="table" style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #ddd' }}>
@@ -140,24 +124,19 @@ export default function OrderHistoryScreen() {
             </tr>
           </thead>
           <tbody>
-            {/* Map through orders and display each order in a table row */}
             {orders.map((order) => (
               <tr key={order._id} style={{ borderBottom: '1px solid #ddd' }}>
                 <td style={tableCellStyle}>{order._id}</td>
                 <td style={tableCellStyle}>{order.createdAt.substring(0, 10)}</td>
                 <td style={tableCellStyle}>{order.totalPrice.toFixed(2)}</td>
                 <td style={tableCellStyle}>
-                  {/* Link to order details */}
                   <Link to={`/order/${order._id}`}>
                     <MdInfo />
                   </Link>
                   <button onClick={() => downloadReport(order._id)}>Download Report</button>
-                  {/* Conditionally render the "Cancel Order" button based on user role */}
-                 
-                    <button onClick={() => removeProductHandler(order._id)}>
-                      Cancel Order Here
-                    </button>
-                  
+                  <button onClick={() => removeProductHandler(order._id)}>
+                    Cancel Order Here
+                  </button>
                 </td>
               </tr>
             ))}
@@ -168,7 +147,6 @@ export default function OrderHistoryScreen() {
   );
 }
 
-// Styles for table header and cell
 const tableHeaderStyle = {
   padding: '12px',
   textAlign: 'left',

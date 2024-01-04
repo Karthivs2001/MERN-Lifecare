@@ -40,7 +40,6 @@ export default function SignupScreen() {
       return;
     }
 
-    // Check if passwords match.
     if (password !== confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -51,7 +50,7 @@ export default function SignupScreen() {
         name,
         email,
         password,
-        recaptcha: recaptchaValue, // Include the reCAPTCHA value in the request.
+        recaptcha: recaptchaValue, 
       });
 
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });

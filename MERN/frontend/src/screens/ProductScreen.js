@@ -71,7 +71,7 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
-// Add these state variables at the beginning of the ProductScreen component
+
 const [like, setLike] = useState(false);
 const [dislike, setDislike] = useState(false);
 const [buttonsDisabled, setButtonsDisabled] = useState(false);

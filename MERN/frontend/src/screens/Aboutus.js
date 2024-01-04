@@ -1,7 +1,7 @@
 import React from 'react';
-import { Icon } from '@iconify/react';
+
 import Footer from '../components/Footer';
-import ReactEmoji from 'react-emoji';
+
 import AddReactionIcon from '@mui/icons-material/AddReaction';
 import SubdirectoryArrowRightTwoToneIcon from '@mui/icons-material/SubdirectoryArrowRightTwoTone';
 import LocalHospitalTwoToneIcon from '@mui/icons-material/LocalHospitalTwoTone';
@@ -11,7 +11,7 @@ const Aboutus = () => {
     <>
       <div className="bg-gray-100 min-h-screen p-8 relative">
         
-         {/* Section for the catchy title with added emoji */}
+         {}
          <div className="text-3xl font-extrabold text-blue-600 mb-8 underline">
           <h4><AddReactionIcon/>Laughter is the Best Medicine, but We've Got the Second Best....</h4>
           

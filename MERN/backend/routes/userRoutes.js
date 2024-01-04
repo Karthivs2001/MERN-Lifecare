@@ -7,7 +7,7 @@ import User from '../models/userModel.js';
 import { isAuth, isAdmin, generateToken, baseUrl, mailgun } from '../utils.js';
 
 const userRouter = express.Router();
-//const nodemailer = require('nodemailer');
+
 
 userRouter.get(
   '/',
@@ -59,14 +59,12 @@ userRouter.put(
   })
 );
 
-// ... (existing imports)
+
 
 userRouter.post(
   '/forget-password',
   expressAsyncHandler(async (req, res) => {
     const { email, recaptchaValue } = req.body;
-
-    // Validate the email and reCAPTCHA value
     if (!email || !recaptchaValue) {
       res.status(400).send({ message: 'Invalid request. Email and reCAPTCHA value are required.' });
       return;
@@ -81,7 +79,6 @@ userRouter.post(
       user.resetToken = token;
       await user.save();
 
-      //reset link
       console.log(`${baseUrl()}/reset-password/${token}`);
 
       var transporter = nodemailer.createTransport({
@@ -97,7 +94,7 @@ userRouter.post(
       const link = `${baseUrl()}/reset-password/${token}`;
       var mailOptions = {
         from: 'pharmacylifecare12@gmail.com',
-        to: email, // Use the user's email
+        to: email, 
         subject: 'Reset Password',
         text: link,
       };

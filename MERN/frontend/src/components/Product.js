@@ -18,7 +18,6 @@ function Product(props) {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    // Fix the URL string in axios.get
     const { data } = await axios.get(`/api/products/${item._id}`);
 
     if (data.countInStock < quantity) {

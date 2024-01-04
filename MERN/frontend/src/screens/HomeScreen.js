@@ -7,7 +7,6 @@ import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Footer from '../components/Footer';
-// import data from '../data';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -28,19 +27,15 @@ function HomeScreen() {
     loading: true,
     error: '',
   });
+
   const handleLike = (product) => {
-    // Implement your logic to update the product with a like
-    // You may want to make an API call to update the backend
     console.log('Liked:', product.name);
   };
 
   const handleDislike = (product) => {
-    // Implement your logic to update the product with a dislike
-    // You may want to make an API call to update the backend
     console.log('Disliked:', product.name);
   };
 
-  // const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
@@ -50,11 +45,10 @@ function HomeScreen() {
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
-
-      // setProducts(result.data);
     };
     fetchData();
   }, []);
+
   return (
     <>
       <div>
@@ -101,4 +95,5 @@ function HomeScreen() {
     </>
   );
 }
+
 export default HomeScreen;

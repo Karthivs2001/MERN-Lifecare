@@ -104,10 +104,8 @@ orderRouter.get(
       doc.text(`Order ID: ${order._id}`);
       doc.text(`Date: ${order.createdAt.toDateString()}`);
 
-      // Add delivery price
       const deliveryPrice = 10;
 
-      // Calculate total order price before discount and delivery charge
       let totalPriceBeforeDiscount = 0;
 
       doc.text(`User Name: ${order.user.name}`);
@@ -129,17 +127,14 @@ orderRouter.get(
         doc.text(`  Quantity: ${item.quantity}`);
         doc.text(`  Price: Rs ${item.price.toFixed(2)}`);
         doc.text(`  Total Price (before discount): Rs ${itemTotalPrice.toFixed(2)}`);
-        doc.text(''); // Empty line for separation
+        doc.text(''); 
       });
 
-      // Apply discount
       const discountPercentage = 10;
       const discountAmount = (totalPriceBeforeDiscount * discountPercentage) / 100;
 
-      // Add delivery charge
       const totalPriceAfterDelivery = totalPriceBeforeDiscount + deliveryPrice;
 
-      // Calculate total order price after discount and delivery charge
       const totalPriceAfterDiscountAndDelivery = totalPriceBeforeDiscount - discountAmount + deliveryPrice;
 
       doc.text(`Discount Amount: -Rs ${discountAmount.toFixed(2)}`);

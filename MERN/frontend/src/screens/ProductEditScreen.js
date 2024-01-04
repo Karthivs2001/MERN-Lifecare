@@ -198,34 +198,7 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="imageFile">
-            <Form.Label>Upload Image</Form.Label>
-            <Form.Control type="file" onChange={uploadFileHandler} />
-            {loadingUpload && <LoadingBox></LoadingBox>}
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="additionalImage">
-            <Form.Label>Additional Images</Form.Label>
-            {images.length === 0 && <MessageBox>No image</MessageBox>}
-            <ListGroup variant="flush">
-              {images.map((x) => (
-                <ListGroup.Item key={x}>
-                  {x}
-                  <Button variant="light" onClick={() => deleteFileHandler(x)}>
-                    <i className="fa fa-times-circle"></i>
-                  </Button>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="additionalImageFile">
-            <Form.Label>Upload Aditional Image</Form.Label>
-            <Form.Control
-              type="file"
-              onChange={(e) => uploadFileHandler(e, true)}
-            />
-            {loadingUpload && <LoadingBox></LoadingBox>}
-          </Form.Group> */}
+          {}
 
           <Form.Group className="mb-3" controlId="category">
             <Form.Label>Category</Form.Label>
